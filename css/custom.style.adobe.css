@@ -9,6 +9,10 @@
 
 }
 
+pre {
+	margin-top: 5px;
+}
+
 .ui-tooltip-content{
 
 
@@ -47,10 +51,20 @@
 
 #jumbotron{
 
+	color: rgba(194, 183, 183, 0.07);
 	padding-bottom: 8px;
 	padding-left: 4%;
 	padding-right: 4%;
 
+}
+
+#list0, #list1, #list2, #list8 {
+	margin-left: 2em;
+
+}
+
+#list3, #list4, #list5, #list6, #list7{
+	margin-left: 4em;
 }
 
 @media (min-width: 434px) {

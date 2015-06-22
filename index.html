@@ -2,18 +2,18 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<title>From 0 to Hello</title>
+<title>Creative Cloud Solutions</title>
 <link rel="stylesheet" type="text/css" href="css/bootstrap.css">
 <link rel="stylesheet" type="text/css" href="css/bootstrap-theme.min.css">
-<link rel="stylesheet" type="text/css" href="css/custom.style.twilio.css"> 
 <link href='http://fonts.googleapis.com/css?family=Alegreya|Allerta' rel='stylesheet' type='text/css'>
 <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/themes/smoothness/jquery-ui.css">
 
 <script type="text/javascript" src="http://code.jquery.com/jquery.min.js"></script>
 <script type="text/javascript" src="js/bootstrap.min.js"></script>
-<script type="text/javascript" src="js/custom.twilio.js"></script>
-<script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js"></script>
+<script type="text/javascript" src="js/custom.adobe.js"></script>
+<script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js?lang=java"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
+<link rel="stylesheet" type="text/css" href="css/custom.style.adobe.css"> 
 
 
 <style type="text/css"> *{ 
@@ -44,9 +44,9 @@
             
         </div>
     </nav>
-    <div class="container" style="color: #231f20; font-size:16px;">
+    <div class="container" style="color: #231f20; font-size:18px;">
         <div class="jumbotron" id="jumbotron">
-            <h1 class="text-center" style="font-size:300%">
+            <h1 class="text-center" style="font-size:300%; color:#009FF4;">
                 Creative Cloud Solutions: Asset Browser Declassified 
             </h1>         
         </div>
@@ -54,37 +54,602 @@
             <div class="col-lg-12 center-block" >
                 <div style="padding-left:1%;">
 
-                    <div id="background">
+                    <div id="high-level-overview">
                         <div id="start" class="triangle-right" onClick="dropdown(this, this.parentElement.id);"></div>
-                        <h1><span>High-level Overview</span></h1>
+                        <h1>High-level Overview</h1>
+                        <div>
+                            The Creative Cloud SDK provides a simple method of accessing a user's files in the Creative Cloud. We do this using the Asset Browser. The Asset Browser is used through the AdobeUXAssetBrowser class which provides a simple UI for browsing the user's files as well as selecting one for download. 
+                            <br>
+                            <br>                        
+                            In this tutorial we will create a simple minimalist UI for testing purposes, enable the Asset Browser, enable the ability to select a file from the Asset Browser, and then display that file in our simple minimalist UI.                            
+                        </div>
                     </div>
                     <script type="text/javascript">
                         dropdown($('#start')[0], $('#start')[0].parentElement.id);                                            
                     </script>
 
-                    <div id="setting-up-our-computer">
+                    <div id="assumptions">
                         <div class="triangle-right" onClick="dropdown(this, this.parentElement.id);"></div>                
-                        <h1>Setting up our computer</h1>                        
-                    </div>
+                        <h1>Assumptions</h1> 
+                            <div class="center-block textDiv assumptions">
+                                Before we start we are going to go through a few assumptions about how prepared we are to integrate the Creative Cloud Asset Browser into our app.                         Make sure to check every box below before moving forward.
 
-                    <div id="setting-up-android-studio">
-                        <div class="triangle-right" onClick="dropdown(this, this.parentElement.id);"></div>                
-                        <h1>Setting up Android Studio</h1>                        
-                    </div>
-
-                    <div id="starting-the-project">
-                        <div class="triangle-right" onClick="dropdown(this, this.parentElement.id);"></div>                
-                        <h1>Starting the project</h1>                        
+                                <br>
+                                <input id="list0" type="checkbox"> A basic understanding of Android Development
+                                <br>
+                                <input id="list1" type="checkbox"> Created an Android project using the Blank Activity template
+                                <br>
+                                <input id="list8" type="checkbox"> Purchased and created a Creative Cloud account
+                                <br>
+                                <input id="list2" type="checkbox"> Completed the Creative Cloud <a href="https://creativesdk.adobe.com/docs/android/#/articles/gettingstarted/index.html">Getting Started</a> tutorial
+                                        <br>
+                                        <input id="list3" type="checkbox"> Integrated the Creative Cloud SDK
+                                        <br>
+                                        <input id="list4" type="checkbox"> Integrated your Client Id and Secret by implementing <a href="https://creativesdk.adobe.com/docs/android/#/com/adobe/creativesdk/foundation/auth/IAdobeAuthClientCredentials.html">IAdobeAuthClientCredentials</a>
+                                        <br>
+                                        <input id="list5" type="checkbox"> Updated the Android Manifest
+                                        <br>
+                                        <input  id="list6" type="checkbox"> Instantiated the <a href="https://creativesdk.adobe.com/docs/android/#/com/adobe/creativesdk/foundation/auth/AdobeAuthSessionHelper.html">AdobeAuthSessionHelper</a>
+                                        <br>
+                                        <input id="list7" type="checkbox"> Enabled Creative Cloud login with the <a href="https://creativesdk.adobe.com/docs/android/#/com/adobe/creativesdk/foundation/auth/AdobeUXAuthManager.html">AdobeUXAuthManager</a>
+                                <br>             
+                            </div>                       
                     </div>
                     
-                    <div id="reviewing-the-project">
+                    <div id="prepping-the-app">
                         <div class="triangle-right" onClick="dropdown(this, this.parentElement.id);"></div>                
-                        <h1>Reviewing the Project</h1>
-                    </div>            
+                        <h1>Prepping the app</h1>      
+                        <div>
+                        After completing the Creative Cloud <a href="https://creativesdk.adobe.com/docs/android/#/articles/gettingstarted/index.html">Getting Started</a> tutorial, we should have a very simple working Android app that allows the user to log into their Creative Cloud account. Before adding the Asset Browser to our app we are going to add a minimal UI to aid us in our testing.
+                        <br>
+                        <br>
+                        To start we are going to change the layout XML file of our main activity <code class="prettyprint">SampleActivity</code>. Change the XML of this layout to the one below.
+                        <pre class="prettyprint"><xmp>
+                            <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                                android:layout_width="match_parent"
+                                android:orientation="vertical"
+                                android:layout_height="match_parent"
+                                android:paddingLeft="@dimen/activity_horizontal_margin"
+                                android:paddingRight="@dimen/activity_horizontal_margin"
+                                android:paddingTop="@dimen/activity_vertical_margin"
+                                android:paddingBottom="@dimen/activity_vertical_margin"
+                                android:id="@+id/home"
+                                android:weightSum="1">
 
-                    <div id="running-the-application">
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:text="Welcome to Asset Browser"
+                                        android:id="@+id/textView"
+                                        android:layout_gravity="center_horizontal"
+                                        android:textIsSelectable="false"
+                                        android:textSize="25dp"
+                                        android:textColor="#000000"
+                                        android:layout_marginTop="10dp" />
+
+                                    <Button
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:text="Login to Asset Browser"
+                                        android:id="@+id/button"
+                                        android:layout_weight="0.22"
+                                        android:layout_below="@+id/textView"
+                                        android:layout_alignParentLeft="true"
+                                        android:layout_alignParentStart="true" />
+
+                                    <ImageView
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:id="@+id/imageView"
+                                        android:layout_gravity="center_horizontal"
+                                        android:layout_marginTop="30dp" />
+
+                            </LinearLayout>
+                        </xmp></pre>
+
+                        This creates a vertical LinearLayout with a TextView, a Button and an ImageView. The TextView displays a welcoming message, the Button we will use to log in and launch the Asset Browser, and the ImageView is where we will load the file we retrieve from the Asset Browser. 
+                        <br>
+                        <br>
+                        Next in our <code class="prettyprint">SampleActivity.java</code> file we are going to <code class="prettyprint">setContentView(R.layout.activity_sample);</code> in the login status logic that we set up in the <a href="https://creativesdk.adobe.com/docs/android/#/articles/gettingstarted/index.html">Getting Started</a> tutorial. This will display our new layout if the user is logged in.
+                        <pre class="prettyprint">
+                        //Session helper to check the login status 
+                        private AdobeAuthSessionHelper.IAdobeAuthStatusCallback _statusCallback = <br>                           new AdobeAuthSessionHelper.IAdobeAuthStatusCallback() {
+                                    @Override
+                                    public void call(AdobeAuthSessionHelper.AdobeAuthStatus status, AdobeAuthException exception) {
+                                        if (AdobeAuthSessionHelper.AdobeAuthStatus.AdobeAuthLoggedIn == status) {
+//start of change -- start of change -- start of change -- start of change
+                                            setContentView(R.layout.activity_sample);
+//end of change -- end of change -- end of change -- end of change
+                                        } else {
+                                           showNotLoggedInUI();
+                                        }
+                                    }
+                        };
+                        </pre>
+
+                        We want to let the user decide when they want to log in. To do that we are going to create a function called init() that will initialize our view, and set a listener on the button. First we will declare a Button and ImageView object in our activity global space.
+                        <pre class="prettyprint">
+                            //activity delcaration
+                            public class SampleActivity extends Activity {
+                                //activity global space, we set global variables here                             
+                                private static int DEFAULT_SIGN_IN_REQUEST_CODE = 2002;
+                                private final AdobeUXAuthManager _uxAuthManager = AdobeUXAuthManager.getSharedAuthManager();
+                                private AdobeAuthSessionHelper _authSessionHelper = null;
+
+//start of change -- start of change -- start of change -- start of change
+                                //control minimal UI
+                                private ImageView imageView;
+                                private Button button;
+//end of change -- end of change -- end of change -- end of change
+                        </pre>
+
+                        Then we will create our <code class="prettyprint">init()</code> function.
+
+                        <pre class="prettyprint">
+//start of change -- start of change -- start of change -- start of change
+                            private void init() {
+                                    setContentView(R.layout.activity_sample);
+                                    button = (Button) findViewById(R.id.button);
+                                    imageView = (ImageView)  findViewById(R.id.imageView);
+                                
+                                    findViewById(R.id.button).setOnClickListener(new View.OnClickListener() {
+                                        @Override
+                                        public void onClick(View v) {
+                                            //Call the showNotLoggedInUI function we created in the getting started tutorial
+                                            showNotLoggedInUI();
+                                        }
+                                    });
+                            }
+//end of change -- end of change -- end of change -- end of change
+                        </pre>
+
+                        We are going to call the <code class="prettyprint">init()</code> function in our activities <code class="prettyprint">onCreate</code> function, delete <code class="prettyprint">setContentView(R.layout.activity_sample);</code> from the login status logic.
+
+                        <pre class="prettyprint">
+                            //Session helper to check the login status 
+                            private AdobeAuthSessionHelper.IAdobeAuthStatusCallback _statusCallback = <br>                               new AdobeAuthSessionHelper.IAdobeAuthStatusCallback() {
+                                    @Override
+                                    public void call(AdobeAuthSessionHelper.AdobeAuthStatus status, AdobeAuthException exception) {
+                                        if (AdobeAuthSessionHelper.AdobeAuthStatus.AdobeAuthLoggedIn == status) {
+//start of change -- start of change -- start of change -- start of change
+                                            //do nothing
+//end of change -- end of change -- end of change -- end of change
+                                        } else {
+//start of change -- start of change -- start of change -- start of change
+                                            //do nothing 
+//end of change -- end of change -- end of change -- end of change
+                                        }
+                                    }
+                            };
+
+                            //onCreate function that is called when the activity is created
+                            @Override
+                            protected void onCreate(Bundle savedInstanceState) {
+                                super.onCreate(savedInstanceState);
+//start of change -- start of change -- start of change -- start of change
+                                //call the init() function we just created 
+                                init();
+//end of change -- end of change -- end of change -- end of change
+                                _authSessionHelper = new AdobeAuthSessionHelper(_statusCallback);
+                                _authSessionHelper.onCreate(savedInstanceState);
+                            }
+                        </pre>
+
+                        Now when we click the button and we are not logged in the login logic will start allowing the user to log into their Creative Cloud account. We are now going to change the the text inside the button, based on the login status of the user. To do that we are going to add a Boolean variable to the activity global variables, we will set that variable to either true or false and change text in the button in the login status of the user.  We will need to change some of the code in the <code class="prettyprint">init()</code> and <code class="prettyprint">showNotLoggedInUI()</code> functions, as well as the <code class="prettyprint">IAdobeAuthStatusCallback()</code> callback.
+
+                        <pre class="prettyprint">
+                            //activity delcaration
+                            public class SampleActivity extends Activity {
+                                //activity global space, we set global variables here                             
+                                private static int DEFAULT_SIGN_IN_REQUEST_CODE = 2002;
+                                private final AdobeUXAuthManager _uxAuthManager = AdobeUXAuthManager.getSharedAuthManager();
+                                private AdobeAuthSessionHelper _authSessionHelper = null;
+
+                                //control minimal UI
+                                private ImageView imageView;
+                                private Button button;
+//start of change -- start of change -- start of change -- start of change
+                                //tracks login status
+                                private boolean signFlag;
+//end of change -- end of change -- end of change -- end of change
+
+
+                                //Session helper to check the login status 
+                                private AdobeAuthSessionHelper.IAdobeAuthStatusCallback _statusCallback = <br>                                    new AdobeAuthSessionHelper.IAdobeAuthStatusCallback() {
+                                        @Override
+                                        public void call(AdobeAuthSessionHelper.AdobeAuthStatus status, AdobeAuthException exception) {
+                                            if (AdobeAuthSessionHelper.AdobeAuthStatus.AdobeAuthLoggedIn == status) {
+//start of change -- start of change -- start of change -- start of change                                                
+                                                signFlag = true;
+                                                 //change the text in the button
+                                                button.setText("Open Access Browser");
+//end of change -- end of change -- end of change -- end of change
+                                            } else {
+//start of change -- start of change -- start of change -- start of change
+                                                signFlag = false;
+//end of change -- end of change -- end of change -- end of change
+                                            }
+                                        }
+                                };
+
+
+                                //function that calls the login logic 
+                                public void showNotLoggedInUI(){
+                                    _uxAuthManager.login(new AdobeAuthSessionLauncher.Builder().withActivity(this).withRequestCode(DEFAULT_SIGN_IN_REQUEST_CODE).build());
+//start of change -- start of change -- start of change -- start of change
+                                    button.setText("Open Access Browser");
+//end of change -- end of change -- end of change -- end of change
+                                }
+
+                                //function to set up the view of our activity 
+                                private void init() {
+                                        setContentView(R.layout.activity_sample);
+                                        button = (Button) findViewById(R.id.button);
+                                        imageView = (ImageView)  findViewById(R.id.imageView);
+                                        findViewById(R.id.button).setOnClickListener(new View.OnClickListener() {
+                                            @Override
+                                            public void onClick(View v) {
+//start of change -- start of change -- start of change -- start of change
+                                                if (!signFlag) {
+                                                    showNotLoggedInUI();
+                                                } else {
+                                                    //do nothing
+                                                }
+//end of change -- end of change -- end of change -- end of change
+                                            }
+                                        });
+                                }
+                        </pre>
+
+                        We have a working UI for testing purposese up and running. We are ready to add the Asset Browser to our application. Our <code class="prettyprint">SampleActivity</code> should look like the code below. 
+
+                        <pre class="prettyprint">
+                            import ...
+
+                            //activity delcaration
+                            public class SampleActivity extends Activity {
+                                //activity global space, we set global variables here                             
+                                private static int DEFAULT_SIGN_IN_REQUEST_CODE = 2002;
+                                private final AdobeUXAuthManager _uxAuthManager = AdobeUXAuthManager.getSharedAuthManager();
+                                private AdobeAuthSessionHelper _authSessionHelper = null;
+
+                                //control minimal UI
+                                private ImageView imageView;
+                                private Button button;
+
+                                //tracks login status
+                                private boolean signFlag;
+
+                                //Session helper to check the login status 
+                                private AdobeAuthSessionHelper.IAdobeAuthStatusCallback _statusCallback = <br>                               new AdobeAuthSessionHelper.IAdobeAuthStatusCallback() {
+                                        @Override
+                                        public void call(AdobeAuthSessionHelper.AdobeAuthStatus status, AdobeAuthException exception) {
+                                            if (AdobeAuthSessionHelper.AdobeAuthStatus.AdobeAuthLoggedIn == status) {
+                                                signFlag = true;
+                                                //change the text in the button
+                                                button.setText("Open Access Browser");
+
+                                            } else {
+                                                signFlag = false;
+                                            }
+                                        }
+                                };                               
+
+
+                                //function that calls the login logic 
+                                public void showNotLoggedInUI(){
+                                    _uxAuthManager.login(new AdobeAuthSessionLauncher.Builder().withActivity(this).withRequestCode(DEFAULT_SIGN_IN_REQUEST_CODE).build());
+                                    button.setText("Open Access Browser");
+                                }
+
+                                //onCreate function that is called when the activity is created
+                                @Override
+                                protected void onCreate(Bundle savedInstanceState) {
+                                    super.onCreate(savedInstanceState);
+
+                                    //call the init() function to launch the UI
+                                    init();
+
+                                    _authSessionHelper = new AdobeAuthSessionHelper(_statusCallback);
+                                    _authSessionHelper.onCreate(savedInstanceState);
+                                }
+
+                                @Override
+                                protected void onResume() {
+                                    super.onResume();
+                                    _authSessionHelper.onResume();
+                                }
+
+                                @Override
+                                protected void onPause() {
+                                    super.onPause();
+                                    _authSessionHelper.onPause();
+                                }
+
+                                @Override
+                                protected void onStart() {
+                                    super.onStart();
+                                    _authSessionHelper.onStart();
+                                }
+
+                                @Override
+                                protected void onStop() {
+                                    super.onStop();
+                                    _authSessionHelper.onStop();
+                                }
+
+                                @Override
+                                protected void onDestroy() {
+                                    super.onDestroy();
+                                    _authSessionHelper.onDestroy();
+                                }
+
+                                @Override
+                                public void onActivityResult(int requestCode, int resultCode, Intent data) {
+                                    super.onActivityResult(requestCode, resultCode, data);
+                                    _authSessionHelper.onActivityResult(requestCode, resultCode, data);                                    
+                                }
+
+                                //function to set up the view of our activity 
+                                private void init() {
+                                        setContentView(R.layout.activity_sample);
+                                        button = (Button) findViewById(R.id.button);
+                                        imageView = (ImageView)  findViewById(R.id.imageView);
+                                        findViewById(R.id.button).setOnClickListener(new View.OnClickListener() {
+                                            @Override
+                                            public void onClick(View v) {
+                                                if (!signFlag) {
+                                                    showNotLoggedInUI();
+                                                } else {
+                                                    //do nothing    
+                                                }
+                                            }
+                                        });
+                                }                                
+                            }
+                        </pre>
+
+                        </div>                  
+                    </div>
+                    
+                    <div id="file-browsing-with-AdobeUXAssetBrowser">
                         <div class="triangle-right" onClick="dropdown(this, this.parentElement.id);"></div>                
-                        <h1>Running the Application</h1>                    
+                        <h1>File browsing with AdobeUXAssetBrowser</h1>         
+                        <div>
+                        
+                            The Asset Browser is a simple UI that allows the user to browse, select and download their files saved in the Creative Cloud. It was designed for simple and smooth integration. 
+                            <br>
+                            <br>
+                            We use the Asset Browser by instantiating the AdobeUXAssetBrowser class. To do that we are going to add a constant to our activities global variables, add a function to use the Asset Browser, and then have the listener attached to our button call that  function.
+
+
+                        <pre class="prettyprint">
+                            //activity delcaration
+                            public class SampleActivity extends Activity {
+                                //activity global space, we set global variables here                             
+                                private static int DEFAULT_SIGN_IN_REQUEST_CODE = 2002;
+                                private final AdobeUXAuthManager _uxAuthManager = AdobeUXAuthManager.getSharedAuthManager();
+                                private AdobeAuthSessionHelper _authSessionHelper = null;
+
+                                //control minimal UI
+                                private ImageView imageView;
+                                private Button button;
+
+                                //tracks login status
+                                private boolean signFlag;
+
+//start of change -- start of change -- start of change -- start of change
+                                //constant request code for Asset Browser activity
+                                private final int CREATIVE_SDK_SAMPLE_REQUEST_CODE = 100;
+//end of change -- end of change -- end of change -- end of change
+                            
+
+//start of change -- start of change -- start of change -- start of change
+                                //function to launch the Asset Browser
+                                private void gotoAssetBrowserScreen() {
+                                    
+                                    //Displays a Creative Cloud asset browser component for viewing and selecting Adobe Creative Cloud assets.
+                                    //This API pops up the default File Browser as an Activity                                                                      
+
+                                    //retrieves an instance of the AdobeUXAssetBrowser activity using the Creative Cloud SDK.
+                                    AdobeUXAssetBrowser sharedAssetBrowserInstance = AdobeUXAssetBrowser.getSharedInstance();
+     
+                                    //launches the AdobeUXAssetBrowser activity
+                                    sharedAssetBrowserInstance.popupFileBrowser(this, CREATIVE_SDK_SAMPLE_REQUEST_CODE);
+                                }
+//end of change -- end of change -- end of change -- end of change
+
+                                //function to set up the view of our activity 
+                                private void init() {
+                                        setContentView(R.layout.activity_sample);
+                                        button = (Button) findViewById(R.id.button);
+                                        imageView = (ImageView)  findViewById(R.id.imageView);                                        
+
+                                        findViewById(R.id.button).setOnClickListener(new View.OnClickListener() {
+                                            @Override
+                                            public void onClick(View v) {
+                                                if (!signFlag) {
+                                                    showNotLoggedInUI();
+                                                } else {
+//start of change -- start of change -- start of change -- start of change
+                                                    //call the gotoAssetBrowserScreen if the user is logged in.
+                                                    gotoAssetBrowserScreen();
+//end of change -- end of change -- end of change -- end of change
+                                                }
+                                            }
+                                        });
+                                }
+                        </pre>
+
+                        The AdobeUXAssetBrowser class has a few methods. In the above example we used two, the getSharedInstance() and popupFileBrowser()
+                        <br>
+                        The AdobeUXAssetBrowser.getSharedInstance() is a static method that returns an instance of the Asset Browser as a singleton. 
+                        <br>
+                        The popuptFileBrowser(Activity activity, int requestCode) is a void method that launches the Asset Browser. It extends the startActivityForResult() method of the Android framework which will be important later when we start to retrieve files from the Asset Browser.
+                        <br>
+                        <br>
+                        The AdobeUXAssetBrowser class also allows a degree of customizability by passing a AdobeUXAssetBrowserConfiguation object as a third parameter to the popuptFileBrowser() method. The AdobeUXAssetBrowserConfiguration object allows for many of different options. We will be only using one, My Account, which allows the user to look at their account settings as well as gives the user the ability to log out of their Creative Cloud account.
+                        <pre class="prettyprint">                           
+                                //function to launch the Asset Browser
+                                private void gotoAssetBrowserScreen() {
+                                    
+                                    //Displays a Creative Cloud asset browser component for viewing and selecting Adobe Creative Cloud assets.
+                                    //This API pops up the default File Browser as an Activity                                                                      
+
+                                    //retrieves an instance of the AdobeUXAssetBrowser activity using the Creative Cloud SDK.
+                                    AdobeUXAssetBrowser sharedAssetBrowserInstance = AdobeUXAssetBrowser.getSharedInstance();
+
+//start of change -- start of change -- start of change -- start of change
+                                    //creates the AssetBrowser configuration object to add options to 
+                                    AdobeUXAssetBrowserConfiguration browserConfiguration = new AdobeUXAssetBrowserConfiguration();
+
+                                    //adds an enum of options constants to the options property of AssetBrowser configuration object, in this case ENABLE_MYACCOUNT_OPTION which will enable My Account
+                                    browserConfiguration.options = EnumSet.of(AdobeUXAssetBrowserOption.ENABLE_MYACCOUNT_OPTION);
+
+                                    //launches the AdobeUXAssetBrowser singleton with customized options, in this case enabling My Account
+                                    sharedAssetBrowserInstance.popupFileBrowser(this, CREATIVE_SDK_SAMPLE_REQUEST_CODE, browserConfiguration);
+//end of change -- end of change -- end of change -- end of change
+                                }
+                        </pre>
+
+                        Look at the documentation of the AdobeUXAssetBrowserConfiguation class and the AdobeUXAssetBrowserOption class to see all the available options to choose from.           
+                        </div>               
+                    </div>
+
+                    <div id="retrieving-selected-files">
+                        <div class="triangle-right" onClick="dropdown(this, this.parentElement.id);"></div>
+                        <h1>Retrieving selected files</h1>                        
+                        <div>
+                            We have a minimal UI, and a functioning Asset Browser, now we are going to retrieve the file that we select from the Asset Browser. 
+                            <br>
+                            <br>
+                            Earlier we learned that the popFileBrowser extends the startActivityForResult() Android framework method, this enables retrieving a file from the Asset Browser to be no different than retrieving files from another activity upon completion. We do it in the <code class="prettyprint">onActivityResult()</code> method. 
+                            <pre class="prettyprint">                           
+                                //when the activity receives the result from another activity it executes this function 
+                                @Override
+                                public void onActivityResult(int requestCode, int resultCode, Intent data) {
+                                    super.onActivityResult(requestCode, resultCode, data);
+                                    _authSessionHelper.onActivityResult(requestCode, resultCode, data);
+
+//start of change -- start of change -- start of change -- start of change
+                                    //execute if a file from the Asset Browser was selected
+                                    if (requestCode == CREATIVE_SDK_SAMPLE_REQUEST_CODE && resultCode == RESULT_OK && data != null) {
+                                        
+                                        //instatiates the ResultProvider helper class method 
+                                        AdobeUXAssetBrowser.ResultProvider assetBrowserResult = new AdobeUXAssetBrowser.ResultProvider(data);
+
+                                        //creates a new ArrayList of AdobeSelection objects that is filled in by the ArrayList of AdobeSelection objects returned by the getSelectionAssetArray() method of the instantiated ResultProvider
+                                        ArrayList<AdobeSelection> mSelectedAssetsList = assetBrowserResult.getSelectionAssetArray();
+                                        
+                                    }
+                                    
+                                    //execute if no file was selected and the back button was pressed 
+                                    else if(requestCode == CREATIVE_SDK_SAMPLE_REQUEST_CODE && resultCode == RESULT_CANCELED){
+                                        //do nothing                                         
+                                    }
+//end of change -- end of change -- end of change -- end of change
+                                }
+                        </pre>
+
+                        Here we make use of the ResultProvider helper class which makes accessing the files selected by the user very simple. We also created an ArrayList of AdobeSelection objects.
+                        <br>
+                        <br>
+                        Before speaking of AdobeSelection objects we must cover AdobeAsset objects. AdobeAsset is the base class of all objects presented in the Asset Browser, and all objects stored in the Adobe Creative Cloud. 
+                        <br>
+                        <br>
+                        AdobeSelection is the base class of all objects selected from the Asset Browser. The Asset Browser displays many different types of files that a user can select and retrieve from their Creative Cloud account. Since they all share the common base class of AdobeSelection objects they can all be passed as an ArrayList of AdobeSelection objects. This allows us to select different types of files at and retrieve them at the same time.                        
+                        </div>
+                    </div>                                        
+
+                    <div id="display-the-files">
+                        <div class="triangle-right" onClick="dropdown(this, this.parentElement.id);"></div>
+                        <h1>Display the files</h1>                    
+                        <div>
+
+                            We now have a minimal UI, a working Asset Browser, and the ability to select files from the Asset Browser. The next and last step in this tutorial is to display a file retrieved from the Asset Browser. As mentioned earlier there are many types of files that extend the AdobeSelection class, but for the sake of clarity we will only be covering how to interact with AdobeAssetFiles in this tutorial. We do have documentation available for x x x x x x. 
+                            <br>
+                            <br>
+                            To display the file retrieved from the Asset browser we must add a method that will convert the file from an AdobeAssetFile to an ImageView, as well as then call that method from our <code class="prettyprint">onActivityResult()</code> method. 
+
+                            <pre class="prettyprint">                           
+                                //when the activity receives the result from another activity it executes this function 
+                                @Override
+                                public void onActivityResult(int requestCode, int resultCode, Intent data) {
+                                    super.onActivityResult(requestCode, resultCode, data);
+                                    _authSessionHelper.onActivityResult(requestCode, resultCode, data);
+
+                                    //execute if a file from the Asset Browser was selected
+                                    if (requestCode == CREATIVE_SDK_SAMPLE_REQUEST_CODE && resultCode == RESULT_OK && data != null) {
+                                        
+                                        //instatiates the ResultProvider helper class method 
+                                        AdobeUXAssetBrowser.ResultProvider assetBrowserResult = new AdobeUXAssetBrowser.ResultProvider(data);
+
+                                        //creates a new ArrayList of AdobeSelection objects that is filled in by the ArrayList of AdobeSelection objects returned by the getSelectionAssetArray() method of the instantiated ResultProvider
+                                        ArrayList&lt;AdobeSelection&gt; mSelectedAssetsList = assetBrowserResult.getSelectionAssetArray();
+//start of change -- start of change -- start of change -- start of change
+                                        //grab the first AdobeSelection object from the ArrayList 
+                                        AdobeSelection selectionObj = mSelectedAssetsList.get(0);
+                                        
+                                        //check to make sure that the selected object is an AdobeSelectionAsset, then retrieve it and pass it to our convert function 
+                                        if (selectionObj instanceof AdobeSelectionAsset)
+                                            convertToImage(((AdobeSelectionAsset) selectionObj).getSelectedItem(), imageView);
+//end of change -- end of change -- end of change -- end of change                                        
+                                    }
+                                    
+                                    //execute if no file was selected and the back button was pressed 
+                                    else if(requestCode == CREATIVE_SDK_SAMPLE_REQUEST_CODE && resultCode == RESULT_CANCELED){
+                                        //do nothing                                         
+                                    }
+                                }
+
+//start of change -- start of change -- start of change -- start of change
+                                //method that converts the passed AdobeAsset into an image and sets the passed imageView to that image
+                                private void convertToImage(AdobeAsset asset, final ImageView localImageView) {
+                                    if (asset instanceof AdobeAssetFile) {
+                                        final AdobeAssetFile aFile = (AdobeAssetFile) asset;
+                                        Log.d("AtachImage","Calling AtachImage>>>>>>>>>>>>>>>>>>>>>>>");
+                                        aFile.getRenditionWithType(AdobeAssetFileRenditionType.ADOBE_ASSET_FILE_RENDITION_TYPE_PNG,
+                                                //set the dimensions of the image to those of the passed imageview
+                                                new AdobeAssetImageDimensions(localImageView.getWidth() , localImageView.getHeight()),
+
+                                                //if everything succesfull then the AdobeAsset is converted to an image and the image view is set to that image
+                                                new IAdobeGenericRequestCallback&lt;byte[], AdobeAssetException&gt;() {
+                                                    @Override
+                                                    public void onCompletion(byte[] data) {
+                                                        InputStream inData = new ByteArrayInputStream(data);
+                                                        Bitmap image = BitmapFactory.decodeStream(inData);
+                                                        localImageView.setImageBitmap(image);
+                                                        Log.d("AtachImage", "COMPLETED getRenditionWithType>>>>>>>>>>>>>>>>>>>>>>>");
+                                                    }
+
+                                                    @Override
+                                                    public void onCancellation() {
+                                                    //do nothing
+                                                    }
+
+                                                    //if there is an error then we change the image view to have a red background and an error is logged. 
+                                                    @Override
+                                                    public void onError(AdobeAssetException error) {
+                                                        localImageView.setBackgroundColor(Color.parseColor("#ffff251c"));
+                                                        Log.d("ERROR", "ERROR getRenditionWithType>>>>>>>>>>>>>>>>>>>>>>>");
+                                                    }
+
+                                                    @Override
+                                                    public void onProgress(double progress) {
+                                                    //do nothing
+                                                    }
+                                                });
+                                    }
+                                }
+//end of change -- end of change -- end of change -- end of change                                                                        
+                            </pre>
+
+                            The <code class="prettyprint">convertToImage()</code> method takes an AdobeAsset and an ImageView as its parameters, converts the AdobeAsset into a Bitmap and sets the passed ImageView to the converted Bitmap. If for some reason an error occur we set the ImageViews' background to red, to let us know that something has gone wrong. 
+                            <br>
+                            <br>
+                            Our test app is now fully functional! Read through the provided documentation to figure out how extend the capabilities of this app. The <code class="prettyprint">SampleActivity.java</code> file should look like the code below. 
+
+                        </div>
                     </div>
                 </div>
 
