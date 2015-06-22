@@ -493,7 +493,7 @@ dict['retrieving-selected-files'] = '<div class="textDiv center-block retrieving
 
 dict['display-the-files'] = '<div class="textDiv center-block display-the-files"> \
 \
-                            We now have a minimal UI, a working Asset Browser, and the ability to select files from the Asset Browser. The next and last step in this tutorial is to display a file retrieved from the Asset Browser. As mentioned earlier there are many types of files that extend the <a href="https://creativesdk.adobe.com/docs/android/#/com/adobe/creativesdk/foundation/storage/AdobeSelection.html">AdobeSelection</a> class, but for the sake of clarity we will only be covering how to interact with <a href="https://creativesdk.adobe.com/docs/android/#/com/adobe/creativesdk/foundation/storage/AdobeAssetFile.html">AdobeAssetFiles</a> in this tutorial. We do have documentation available for x x x x x x. \
+                            We now have a minimal UI, a working Asset Browser, and the ability to select files from the Asset Browser. The next and last step in this tutorial is to display a file retrieved from the Asset Browser. As mentioned earlier there are many types of files that extend the <a href="https://creativesdk.adobe.com/docs/android/#/com/adobe/creativesdk/foundation/storage/AdobeSelection.html">AdobeSelection</a> class, but for the sake of clarity we will only be covering how to interact with <a href="https://creativesdk.adobe.com/docs/android/#/com/adobe/creativesdk/foundation/storage/AdobeAssetFile.html">AdobeAssetFiles</a> in this tutorial. We do have documentation available for <a href="https://creativesdk.adobe.com/docs/android/#/com/adobe/creativesdk/foundation/storage/AdobePhotoAsset.html">AdobePhotoAsset</a>, <a href="https://creativesdk.adobe.com/docs/android/#/com/adobe/creativesdk/foundation/storage/AdobeAssetLibrary.html">AdobeAssetLibrary</a>, <a href="https://creativesdk.adobe.com/docs/android/#/com/adobe/creativesdk/foundation/storage/AdobeAssetLineFile.html">AdobeAssetLineFile</a>, <a href="https://creativesdk.adobe.com/docs/android/#/com/adobe/creativesdk/foundation/storage/AdobeAssetDrawFile.html">AdobeAssetDrawFile</a>, <a href="https://creativesdk.adobe.com/docs/android/#/com/adobe/creativesdk/foundation/storage/AdobeAssetSketchbook.html">AdobeAssetSketchbook</a>, <a href="https://creativesdk.adobe.com/docs/android/#/com/adobe/creativesdk/foundation/storage/AdobeAssetCompFile.html">AdobeAssetCompFile</a>, <a href="https://creativesdk.adobe.com/docs/android/#/com/adobe/creativesdk/foundation/storage/AdobeAssetPSMixFile.html">AdobeAssetPSMixFile</a>. \
                             <br> \
                             <br> \
                             To display the file retrieved from the Asset browser, we must add a method that will convert the file from an <a href="https://creativesdk.adobe.com/docs/android/#/com/adobe/creativesdk/foundation/storage/AdobeAssetFile.html">AdobeAssetFiles</a> to an <a href="http://developer.android.com/reference/android/widget/ImageView.html">ImageView</a>. Then we must call that method from our <code class="prettyprint">onActivityResult()</code> method.  \
@@ -603,10 +603,12 @@ var hdict = {};
 <a href="https://creativesdk.adobe.com/docs/android/#/com/adobe/creativesdk/foundation/storage/AdobeAsset.html">AdobeAsset</a>
 <a href="https://creativesdk.adobe.com/docs/android/#/com/adobe/creativesdk/foundation/storage/AdobeAssetFile.html">AdobeAssetFiles</a>
 <a href="http://developer.android.com/reference/android/graphics/Bitmap.html">Bitmap</a>
-<a href=""></a>
-<a href=""></a>
-<a href=""></a>
-<a href=""></a>
+<a href="https://creativesdk.adobe.com/docs/android/#/com/adobe/creativesdk/foundation/storage/AdobePhotoAsset.html">AdobePhotoAsset</a>
+<a href="https://creativesdk.adobe.com/docs/android/#/com/adobe/creativesdk/foundation/storage/AdobeAssetLibrary.html">AdobeAssetLibrary</a>, <a href="https://creativesdk.adobe.com/docs/android/#/com/adobe/creativesdk/foundation/storage/AdobeAssetLineFile.html">AdobeAssetLineFile</a>, <a href="https://creativesdk.adobe.com/docs/android/#/com/adobe/creativesdk/foundation/storage/AdobeAssetDrawFile.html">AdobeAssetDrawFile</a>, <a href="https://creativesdk.adobe.com/docs/android/#/com/adobe/creativesdk/foundation/storage/AdobeAssetSketchbook.html">AdobeAssetSketchbook</a>, <a href="https://creativesdk.adobe.com/docs/android/#/com/adobe/creativesdk/foundation/storage/AdobeAssetCompFile.html">AdobeAssetCompFile</a>, <a href="https://creativesdk.adobe.com/docs/android/#/com/adobe/creativesdk/foundation/storage/AdobeAssetPSMixFile.html">AdobeAssetPSMixFile</a>.
+
+
+
+
 <a href=""></a>
 <a href=""></a>
 */
