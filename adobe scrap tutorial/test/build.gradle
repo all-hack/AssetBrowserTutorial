@@ -1,0 +1,82 @@
+// Top-level build file where you can add configuration options common to all sub-projects/modules.
+buildscript {
+    repositories {
+    	mavenCentral()
+        jcenter()
+    }
+    dependencies {
+        classpath 'com.android.tools.build:gradle:1.0.0-rc4'
+    }
+}
+
+allprojects {
+    apply plugin: 'maven'
+
+    tasks.withType(JavaCompile) {
+        options.incremental = true
+    }
+
+    repositories {
+        mavenCentral()
+        jcenter()
+		maven {
+            url "${project.rootDir}/creativesdk-repo/release"  //ADD THE CORRECT LOCATION OF THE CREATIVESDK LIBRARY FILES
+        }
+    }
+}
+
+apply plugin: 'android'
+
+dependencies {
+    compile fileTree(include: '*.jar', dir: 'libs')
+    compile 'com.adobe.creativesdk:behance:0.4.264'
+    compile 'com.adobe.creativesdk.foundation:auth:0.4.264'
+    compile 'com.adobe.creativesdk.foundation:assets:0.4.264'  
+}
+
+android {
+    compileSdkVersion "android-21"
+    buildToolsVersion "21.1.1"
+
+    defaultConfig {
+        applicationId "com.adobe.creativesdk.sample"
+        minSdkVersion 14
+        targetSdkVersion 21
+        versionName "0.4.264"
+        versionCode 7
+    }
+   
+    sourceSets {
+        main {
+            manifest.srcFile 'AndroidManifest.xml'
+            java.srcDirs = ['src']
+            resources.srcDirs = ['src']
+            aidl.srcDirs = ['src']
+            renderscript.srcDirs = ['src']
+            res.srcDirs = ['res']
+            assets.srcDirs = ['assets']
+        }      
+    }
+   
+    buildTypes {
+        release {
+            debuggable false
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    packagingOptions {
+        exclude 'META-INF/DEPENDENCIES'
+        exclude 'META-INF/NOTICE'
+        exclude 'META-INF/LICENSE'
+    }
+
+    lintOptions {
+        abortOnError false
+    }
+
+    dexOptions {
+        javaMaxHeapSize "4g"
+    }
+}

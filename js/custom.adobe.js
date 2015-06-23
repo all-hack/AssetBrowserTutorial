@@ -579,7 +579,18 @@ dict['display-the-files'] = '<div class="textDiv center-block display-the-files"
                         </div>';
 
 //dict 2 
-var hdict = {};
+var vocabDict = {};
+
+vocabDict['Creative Cloud SDK'] = "ddd";
+
+//console.log(vocabDict['Creative Cloud SDK']);
+
+
+
+
+
+
+
 /*
 <a href="https://creativesdk.adobe.com/docs/android/#/com/adobe/creativesdk/foundation/storage/AdobeUXAssetBrowser.html">AdobeUXAssetBrowser</a>
 <a href="https://developer.android.com/training/index.html">Android Development</a>

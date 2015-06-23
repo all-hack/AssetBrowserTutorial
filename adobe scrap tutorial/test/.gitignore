@@ -1,0 +1,9 @@
+.settings/
+.idea/
+bin/
+gen/
+build/
+.DS_Store
+local.properties
+*.iml
+lint.xml
