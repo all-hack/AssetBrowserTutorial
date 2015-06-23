@@ -2,15 +2,15 @@
 var dict = {};
 // dictionary of elements 
 dict['high-level-overview'] = "<div class='textDiv center-block high-level-overview'>\
-                            The Creative Cloud SDK includes a library to easily implement Creative Cloud file browsing. We do this using the Asset Browser. The Asset Browser is used through the <a href='https://creativesdk.adobe.com/docs/android/#/com/adobe/creativesdk/foundation/storage/AdobeUXAssetBrowser.html'>AdobeUXAssetBrowser</a>\
+                            The <span class='toolTip'>Creative Cloud SDK</span> includes a library to easily implement <span class='toolTip'>Creative Cloud</span> file browsing. We do this using the <span class='toolTip'>Asset Browser</span>. The <span class='toolTip'>Asset Browser</span> is used through the <a href='https://creativesdk.adobe.com/docs/android/#/com/adobe/creativesdk/foundation/storage/AdobeUXAssetBrowser.html'>AdobeUXAssetBrowser</a>\
                              class which provides a simple UI for browsing the user's files as well as selecting one for download. \
                             <br>\
                             <br>                       \
-                            In this tutorial we will create a simple minimalist UI for testing purposes, enable the Asset Browser, enable the ability to select a file from the Asset Browser, and then display that file in our simple minimalist UI.                            \
+                            In this tutorial we will create a simple minimalist UI for testing purposes, enable the <span class='toolTip'>Asset Browser</span>, enable the ability to select a file from the <span class='toolTip'>Asset Browser</span>, and then display that file in our simple minimalist UI.                            \
                         </div>";
 
 dict['assumptions'] = '<div class="center-block textDiv assumptions"> \
-                                Before we start we are going to go through a few assumptions about how prepared we are to integrate the Creative Cloud Asset Browser into our app.                         Make sure to check every box below before moving forward. \
+                                Before we start we are going to go through a few assumptions about how prepared we are to integrate the <span class="toolTip">Creative Cloud</span> <span class="toolTip">Asset Browser</span> into our app.                         Make sure to check every box below before moving forward. \
 \
                                 <br> \
                                 <input id="list0" type="checkbox"> Have a basic understanding of Android Development \
@@ -32,12 +32,12 @@ dict['assumptions'] = '<div class="center-block textDiv assumptions"> \
                                         <br> \
                                         <input  id="list6" type="checkbox"> Instantiated the <a href="https://creativesdk.adobe.com/docs/android/#/com/adobe/creativesdk/foundation/auth/AdobeAuthSessionHelper.html">AdobeAuthSessionHelper</a> \
                                         <br> \
-                                        <input id="list7" type="checkbox"> Enabled Creative Cloud login with the <a href="https://creativesdk.adobe.com/docs/android/#/com/adobe/creativesdk/foundation/auth/AdobeUXAuthManager.html">AdobeUXAuthManager</a> \
+                                        <input id="list7" type="checkbox"> Enabled <span class="toolTip">Creative Cloud</span> login with the <a href="https://creativesdk.adobe.com/docs/android/#/com/adobe/creativesdk/foundation/auth/AdobeUXAuthManager.html">AdobeUXAuthManager</a> \
                                 <br>             \
                             </div>     ';
 
 dict['prepping-the-app'] = '<div class="textDiv center-block prepping-the-app"> \
-                        After completing the Creative Cloud <a href="https://creativesdk.adobe.com/docs/android/#/articles/gettingstarted/index.html">Getting Started</a> tutorial, we should have a very simple working Android app that allows the user to log into their Creative Cloud account. Before adding the Asset Browser to our app we are going to add a minimal UI to aid us in our testing. \
+                        After completing the <span class="toolTip">Creative Cloud</span> <a href="https://creativesdk.adobe.com/docs/android/#/articles/gettingstarted/index.html">Getting Started</a> tutorial, we should have a very simple working Android app that allows the user to log into their Creative Cloud account. Before adding the <span class="toolTip">Asset Browser</span> to our app we are going to add a minimal UI to aid us in our testing. \
                         <br> \
                         <br> \
                         To start we are going to change the layout XML file of our main activity <code class="prettyprint">SampleActivity.java</code>. \
@@ -85,8 +85,8 @@ dict['prepping-the-app'] = '<div class="textDiv center-block prepping-the-app"> 
                         </xmp></pre> \
 \
                         This creates a vertical <a href="http://developer.android.com/guide/topics/ui/layout/linear.html">LinearLayout</a> \
-                        with a <a href="http://developer.android.com/reference/android/widget/TextView.html">TextView</a>, a <a href="http://developer.android.com/reference/android/widget/Button.html">Button</a> and an <a href="http://developer.android.com/reference/android/widget/ImageView.html">ImageView</a>. The <a href="http://developer.android.com/reference/android/widget/TextView.html">TextView</a> displays a welcoming message. The <a href="http://developer.android.com/reference/android/widget/Button.html">Button</a> we will use to log in and launch the Asset Browser. The <a href="http://developer.android.com/reference/android/widget/ImageView.html">ImageView</a> \
-                         is where we will display the file we retrieve from the Asset Browser.  \
+                        with a <a href="http://developer.android.com/reference/android/widget/TextView.html">TextView</a>, a <a href="http://developer.android.com/reference/android/widget/Button.html">Button</a> and an <a href="http://developer.android.com/reference/android/widget/ImageView.html">ImageView</a>. The <a href="http://developer.android.com/reference/android/widget/TextView.html">TextView</a> displays a welcoming message. The <a href="http://developer.android.com/reference/android/widget/Button.html">Button</a> we will use to log in and launch the <span class="toolTip">Asset Browser</span>. The <a href="http://developer.android.com/reference/android/widget/ImageView.html">ImageView</a> \
+                         is where we will display the file we retrieve from the <span class="toolTip">Asset Browser</span>.  \
                         <br> \
                         <br> \
                         Next in our <code class="prettyprint">SampleActivity.java</code> file we are going to <code class="prettyprint">setContentView(R.layout.activity_sample);</code> in the login status logic that we set up in the <a href="https://creativesdk.adobe.com/docs/android/#/articles/gettingstarted/index.html">Getting Started</a> tutorial. This will display our new layout if the user is logged in. \
@@ -176,7 +176,7 @@ dict['prepping-the-app'] = '<div class="textDiv center-block prepping-the-app"> 
                             } \r\
                         </pre> \
 \
-                        Now when we click the button and we are not logged in, the login logic will start, allowing the user to log into their Creative Cloud account. We are now going to change the the text inside the button, based on the login status of the user. To do that we are going to add a Boolean variable to the activity\'s global variables. We will set that variable to either true or false and change text in the button according to the login status of the user. We will need to change some of the code in the <code class="prettyprint">init()</code> and <code class="prettyprint">showNotLoggedInUI()</code> methods, as well as the <code class="prettyprint">IAdobeAuthStatusCallback()</code> callback. \
+                        Now when we click the button and we are not logged in, the login logic will start, allowing the user to log into their <span class="toolTip">Creative Cloud</span> account. We are now going to change the the text inside the button, based on the login status of the user. To do that we are going to add a <span class="toolTip">Boolean</span> variable to the activity\'s global variables. We will set that variable to either true or false and change text in the button according to the login status of the user. We will need to change some of the code in the <code class="prettyprint">init()</code> and <code class="prettyprint">showNotLoggedInUI()</code> methods, as well as the <code class="prettyprint">IAdobeAuthStatusCallback()</code> callback. \
 \
                         <pre class="prettyprint"> \
                             //activity delcaration \r\
@@ -240,7 +240,7 @@ dict['prepping-the-app'] = '<div class="textDiv center-block prepping-the-app"> 
                                 } \r\
                         </pre> \
 \
-                        We have a working UI for testing purposese up and running. We are ready to add the Asset Browser to our application. Our <code class="prettyprint">SampleActivity.java</code> fileshould look like the code below. \
+                        We have a working UI for testing purposese up and running. We are ready to add the <span class="toolTip">Asset Browser</span> to our application. Our <code class="prettyprint">SampleActivity.java</code> fileshould look like the code below. \
 \
                         <pre class="prettyprint"> \
                             import ... \r\
@@ -352,10 +352,10 @@ dict['prepping-the-app'] = '<div class="textDiv center-block prepping-the-app"> 
 dict['file-browsing-with-AdobeUXAssetBrowser'] = ' \
 					<div class="textDiv center-block file-browsing-with-AdobeUXAssetBrowser"> \
                         \
-                            The Asset Browser is a simple UI that allows the user to browse, select, and download their files saved in the Creative Cloud. It was designed for simple and smooth integration. \
+                            The <span class="toolTip">Asset Browser</span> is a simple UI that allows the user to browse, select, and download their files saved in the <span class="toolTip">Creative Cloud</span>. It was designed for simple and smooth integration. \
                             <br> \
                             <br> \
-                            We use the Asset Browser by instantiating the <a href="https://creativesdk.adobe.com/docs/android/#/com/adobe/creativesdk/foundation/storage/AdobeUXAssetBrowser.html">AdobeUXAssetBrowser</a> class. To do that we are going to add a constant to our activity\'s global variables, add a method to use the Asset Browser, and then have the <a href="http://developer.android.com/reference/android/view/View.OnClickListener.html">listener</a> attached to our button call that method. \
+                            We use the <span class="toolTip">Asset Browser</span> by instantiating the <a href="https://creativesdk.adobe.com/docs/android/#/com/adobe/creativesdk/foundation/storage/AdobeUXAssetBrowser.html">AdobeUXAssetBrowser</a> class. To do that we are going to add a constant to our activity\'s global variables, add a method to use the <span class="toolTip">Asset Browser</span>, and then have the <a href="http://developer.android.com/reference/android/view/View.OnClickListener.html">listener</a> attached to our button call that method. \
 \
                         <pre class="prettyprint"> \
                             //activity delcaration \r\
@@ -417,13 +417,13 @@ dict['file-browsing-with-AdobeUXAssetBrowser'] = ' \
                         The <a href="https://creativesdk.adobe.com/docs/android/#/com/adobe/creativesdk/foundation/storage/AdobeUXAssetBrowser.html">AdobeUXAssetBrowser</a> class has a few methods. In the above example we used two of those methods, <a href="https://creativesdk.adobe.com/docs/android/#/com/adobe/creativesdk/foundation/storage/AdobeUXAssetBrowser.html">getSharedInstance()</a> and <a href="https://creativesdk.adobe.com/docs/android/#/com/adobe/creativesdk/foundation/storage/AdobeUXAssetBrowser.html">popupFileBrowser()</a>. \
 \
                         <br> \
-                        The <a href="https://creativesdk.adobe.com/docs/android/#/com/adobe/creativesdk/foundation/storage/AdobeUXAssetBrowser.html">AdobeUXAssetBrowser.getSharedInstance()</a> \
-                         is a static method that returns an instance of the Asset Browser as a <a href="https://en.wikipedia.org/?title=Singleton_pattern">singleton</a>.  \
+                        <a href="https://creativesdk.adobe.com/docs/android/#/com/adobe/creativesdk/foundation/storage/AdobeUXAssetBrowser.html">AdobeUXAssetBrowser.getSharedInstance()</a> \
+                         is a static method that returns an instance of the <span class="toolTip">Asset Browser</span> as a <a href="https://en.wikipedia.org/?title=Singleton_pattern">singleton</a>.  \
                         <br> \
-                        <a href="https://creativesdk.adobe.com/docs/android/#/com/adobe/creativesdk/foundation/storage/AdobeUXAssetBrowser.html">popupFileBrowser(Activity activity, int requestCode)</a> is a void method that launches the Asset Browser. It extends the <a href="http://developer.android.com/reference/android/app/Activity.html#startActivityForResult(android.content.Intent, int)">startActivityForResult()</a> method of the Android framework which will be important later when we start to retrieve files from the Asset Browser. \
+                        <a href="https://creativesdk.adobe.com/docs/android/#/com/adobe/creativesdk/foundation/storage/AdobeUXAssetBrowser.html">popupFileBrowser(Activity activity, int requestCode)</a> is a void method that launches the <span class="toolTip">Asset Browser</span>. It extends the <a href="http://developer.android.com/reference/android/app/Activity.html#startActivityForResult(android.content.Intent, int)">startActivityForResult()</a> method of the Android framework which will be important later when we start to retrieve files from the <span class="toolTip">Asset Browser</span>. \
                         <br> \
                         <br> \
-                        The <a href="https://creativesdk.adobe.com/docs/android/#/com/adobe/creativesdk/foundation/storage/AdobeUXAssetBrowser.html">AdobeUXAssetBrowser</a> class also allows a degree of customizability by passing a <a href="https://creativesdk.adobe.com/docs/android/#/com/adobe/creativesdk/foundation/storage/AdobeUXAssetBrowserConfiguration.html">AdobeUXAssetBrowserConfiguation</a> object as a third parameter to the <a href="https://creativesdk.adobe.com/docs/android/#/com/adobe/creativesdk/foundation/storage/AdobeUXAssetBrowser.html">popupFileBrowser()</a> method. The <a href="https://creativesdk.adobe.com/docs/android/#/com/adobe/creativesdk/foundation/storage/AdobeUXAssetBrowserConfiguration.html">AdobeUXAssetBrowserConfiguation</a> object allows for many of different options. We will be only using one, My Account, which allows the user to look at their account settings as well as gives the user the ability to log out of their Creative Cloud account. \
+                        The <a href="https://creativesdk.adobe.com/docs/android/#/com/adobe/creativesdk/foundation/storage/AdobeUXAssetBrowser.html">AdobeUXAssetBrowser</a> class also allows a degree of customizability by passing a <a href="https://creativesdk.adobe.com/docs/android/#/com/adobe/creativesdk/foundation/storage/AdobeUXAssetBrowserConfiguration.html">AdobeUXAssetBrowserConfiguation</a> object as a third parameter to the <a href="https://creativesdk.adobe.com/docs/android/#/com/adobe/creativesdk/foundation/storage/AdobeUXAssetBrowser.html">popupFileBrowser()</a> method. The <a href="https://creativesdk.adobe.com/docs/android/#/com/adobe/creativesdk/foundation/storage/AdobeUXAssetBrowserConfiguration.html">AdobeUXAssetBrowserConfiguation</a> object allows for many of different options. We will be only using one, My Account, which allows the user to look at their account settings as well as gives the user the ability to log out of their <span class="toolTip">Creative Cloud</span> account. \
                         <pre class="prettyprint">                            \
                                 //function to launch the Asset Browser \r\
                                 private void gotoAssetBrowserScreen() { \r\
@@ -451,10 +451,10 @@ dict['file-browsing-with-AdobeUXAssetBrowser'] = ' \
                         </div>';
 
 dict['retrieving-selected-files'] = '<div class="textDiv center-block retrieving-selected-files"> \
-                            We have a minimal UI, and a functioning Asset Browser, now we are going to retrieve the file that we select from the Asset Browser. \
+                            We have a minimal UI, and a functioning <span class="toolTip">Asset Browser</span>, now we are going to retrieve the file that we select from the <span class="toolTip">Asset Browser</span>. \
                             <br> \
                             <br> \
-                            Earlier we learned that the <a href="https://creativesdk.adobe.com/docs/android/#/com/adobe/creativesdk/foundation/storage/AdobeUXAssetBrowser.html">popupFileBrowser()</a> extends the <a href="http://developer.android.com/reference/android/app/Activity.html#startActivityForResult(android.content.Intent, int)">startActivityForResult()</a> Android framework method. This enables retrieving a file from the Asset Browser to be no different than retrieving data from another activity upon completion. We do it in our <code class="prettyprint">onActivityResult()</code> method.  \
+                            Earlier we learned that the <a href="https://creativesdk.adobe.com/docs/android/#/com/adobe/creativesdk/foundation/storage/AdobeUXAssetBrowser.html">popupFileBrowser()</a> extends the <a href="http://developer.android.com/reference/android/app/Activity.html#startActivityForResult(android.content.Intent, int)">startActivityForResult()</a> Android framework method. This enables retrieving a file from the <span class="toolTip">Asset Browser</span> to be no different than retrieving data from another activity upon completion. We do it in our <code class="prettyprint">onActivityResult()</code> method.  \
                             <pre class="prettyprint">\
                                 //when the activity receives the result from another activity it executes this function \r\
                                 @Override \r\
@@ -485,18 +485,18 @@ dict['retrieving-selected-files'] = '<div class="textDiv center-block retrieving
                         Here we make use of the <a href="https://creativesdk.adobe.com/docs/android/#/com/adobe/creativesdk/foundation/storage/AdobeUXAssetBrowser.ResultProvider.html">ResultProvider</a> helper class which makes accessing the files selected by the user very simple. We also created an <a href="http://developer.android.com/reference/java/util/ArrayList.html">ArrayList</a> of <a href="https://creativesdk.adobe.com/docs/android/#/com/adobe/creativesdk/foundation/storage/AdobeSelection.html">AdobeSelection</a> objects. \
                         <br> \
                         <br> \
-                        Before speaking of <a href="https://creativesdk.adobe.com/docs/android/#/com/adobe/creativesdk/foundation/storage/AdobeSelection.html">AdobeSelection</a> objects we must cover <a href="https://creativesdk.adobe.com/docs/android/#/com/adobe/creativesdk/foundation/storage/AdobeAsset.html">AdobeAsset</a> objects. <a href="https://creativesdk.adobe.com/docs/android/#/com/adobe/creativesdk/foundation/storage/AdobeAsset.html">AdobeAsset</a> is the base class of all objects presented in the Asset Browser, and all objects stored in the Adobe Creative Cloud.  \
+                        Before speaking of <a href="https://creativesdk.adobe.com/docs/android/#/com/adobe/creativesdk/foundation/storage/AdobeSelection.html">AdobeSelection</a> objects we must cover <a href="https://creativesdk.adobe.com/docs/android/#/com/adobe/creativesdk/foundation/storage/AdobeAsset.html">AdobeAsset</a> objects. <a href="https://creativesdk.adobe.com/docs/android/#/com/adobe/creativesdk/foundation/storage/AdobeAsset.html">AdobeAsset</a> is the base class of all objects presented in the <span class="toolTip">Asset Browser</span>, and all objects stored in the Adobe <span class="toolTip">Creative Cloud</span>.  \
                         <br> \
                         <br> \
-                        <a href="https://creativesdk.adobe.com/docs/android/#/com/adobe/creativesdk/foundation/storage/AdobeSelection.html">AdobeSelection</a> is the base class of all objects selected from the Asset Browser. The Asset Browser displays many different types of files, that a user can select and retrieve from their Creative Cloud account. Since they all share the common base class of <a href="https://creativesdk.adobe.com/docs/android/#/com/adobe/creativesdk/foundation/storage/AdobeSelection.html">AdobeSelection</a> they can all be passed as an <a href="http://developer.android.com/reference/java/util/ArrayList.html">ArrayList</a> of <a href="https://creativesdk.adobe.com/docs/android/#/com/adobe/creativesdk/foundation/storage/AdobeSelection.html">AdobeSelection</a> objects. This allows us to select different types of files and retrieve them all at the same time.                         \
+                        <a href="https://creativesdk.adobe.com/docs/android/#/com/adobe/creativesdk/foundation/storage/AdobeSelection.html">AdobeSelection</a> is the base class of all objects selected from the <span class="toolTip">Asset Browser</span>. The <span class="toolTip">Asset Browser</span> displays many different types of files, that a user can select and retrieve from their <span class="toolTip">Creative Cloud</span> account. Since they all share the common base class of <a href="https://creativesdk.adobe.com/docs/android/#/com/adobe/creativesdk/foundation/storage/AdobeSelection.html">AdobeSelection</a> they can all be passed as an <a href="http://developer.android.com/reference/java/util/ArrayList.html">ArrayList</a> of <a href="https://creativesdk.adobe.com/docs/android/#/com/adobe/creativesdk/foundation/storage/AdobeSelection.html">AdobeSelection</a> objects. This allows us to select different types of files and retrieve them all at the same time.                         \
                         </div> ';
 
 dict['display-the-files'] = '<div class="textDiv center-block display-the-files"> \
 \
-                            We now have a minimal UI, a working Asset Browser, and the ability to select files from the Asset Browser. The next and last step in this tutorial is to display a file retrieved from the Asset Browser. As mentioned earlier there are many types of files that extend the <a href="https://creativesdk.adobe.com/docs/android/#/com/adobe/creativesdk/foundation/storage/AdobeSelection.html">AdobeSelection</a> class, but for the sake of clarity we will only be covering how to interact with <a href="https://creativesdk.adobe.com/docs/android/#/com/adobe/creativesdk/foundation/storage/AdobeAssetFile.html">AdobeAssetFiles</a> in this tutorial. We do have documentation available for <a href="https://creativesdk.adobe.com/docs/android/#/com/adobe/creativesdk/foundation/storage/AdobePhotoAsset.html">AdobePhotoAsset</a>, <a href="https://creativesdk.adobe.com/docs/android/#/com/adobe/creativesdk/foundation/storage/AdobeAssetLibrary.html">AdobeAssetLibrary</a>, <a href="https://creativesdk.adobe.com/docs/android/#/com/adobe/creativesdk/foundation/storage/AdobeAssetLineFile.html">AdobeAssetLineFile</a>, <a href="https://creativesdk.adobe.com/docs/android/#/com/adobe/creativesdk/foundation/storage/AdobeAssetDrawFile.html">AdobeAssetDrawFile</a>, <a href="https://creativesdk.adobe.com/docs/android/#/com/adobe/creativesdk/foundation/storage/AdobeAssetSketchbook.html">AdobeAssetSketchbook</a>, <a href="https://creativesdk.adobe.com/docs/android/#/com/adobe/creativesdk/foundation/storage/AdobeAssetCompFile.html">AdobeAssetCompFile</a>, <a href="https://creativesdk.adobe.com/docs/android/#/com/adobe/creativesdk/foundation/storage/AdobeAssetPSMixFile.html">AdobeAssetPSMixFile</a>. \
+                            We now have a minimal UI, a working <span class="toolTip">Asset Browser</span>, and the ability to select files from the <span class="toolTip">Asset Browser</span>. The next and last step in this tutorial is to display a file retrieved from the <span class="toolTip">Asset Browser</span>. As mentioned earlier there are many types of files that extend the <a href="https://creativesdk.adobe.com/docs/android/#/com/adobe/creativesdk/foundation/storage/AdobeSelection.html">AdobeSelection</a> class, but for the sake of clarity we will only be covering how to interact with <a href="https://creativesdk.adobe.com/docs/android/#/com/adobe/creativesdk/foundation/storage/AdobeAssetFile.html">AdobeAssetFiles</a> in this tutorial. We do have documentation available for <a href="https://creativesdk.adobe.com/docs/android/#/com/adobe/creativesdk/foundation/storage/AdobePhotoAsset.html">AdobePhotoAsset</a>, <a href="https://creativesdk.adobe.com/docs/android/#/com/adobe/creativesdk/foundation/storage/AdobeAssetLibrary.html">AdobeAssetLibrary</a>, <a href="https://creativesdk.adobe.com/docs/android/#/com/adobe/creativesdk/foundation/storage/AdobeAssetLineFile.html">AdobeAssetLineFile</a>, <a href="https://creativesdk.adobe.com/docs/android/#/com/adobe/creativesdk/foundation/storage/AdobeAssetDrawFile.html">AdobeAssetDrawFile</a>, <a href="https://creativesdk.adobe.com/docs/android/#/com/adobe/creativesdk/foundation/storage/AdobeAssetSketchbook.html">AdobeAssetSketchbook</a>, <a href="https://creativesdk.adobe.com/docs/android/#/com/adobe/creativesdk/foundation/storage/AdobeAssetCompFile.html">AdobeAssetCompFile</a>, <a href="https://creativesdk.adobe.com/docs/android/#/com/adobe/creativesdk/foundation/storage/AdobeAssetPSMixFile.html">AdobeAssetPSMixFile</a>. \
                             <br> \
                             <br> \
-                            To display the file retrieved from the Asset browser, we must add a method that will convert the file from an <a href="https://creativesdk.adobe.com/docs/android/#/com/adobe/creativesdk/foundation/storage/AdobeAssetFile.html">AdobeAssetFiles</a> to an <a href="http://developer.android.com/reference/android/widget/ImageView.html">ImageView</a>. Then we must call that method from our <code class="prettyprint">onActivityResult()</code> method.  \
+                            To display the file retrieved from the <span class="toolTip">Asset Browser</span>, we must add a method that will convert the file from an <a href="https://creativesdk.adobe.com/docs/android/#/com/adobe/creativesdk/foundation/storage/AdobeAssetFile.html">AdobeAssetFiles</a> to an <a href="http://developer.android.com/reference/android/widget/ImageView.html">ImageView</a>. Then we must call that method from our <code class="prettyprint">onActivityResult()</code> method.  \
  \
                             <pre class="prettyprint">\
                                 //when the activity receives the result from another activity it executes this function  \r\
@@ -581,9 +581,12 @@ dict['display-the-files'] = '<div class="textDiv center-block display-the-files"
 //dict 2 
 var vocabDict = {};
 
-vocabDict['Creative Cloud SDK'] = "ddd";
+vocabDict['Creative Cloud SDK'] = "Adobe’s Creative SDK gives your users incredible creative power, and provide a seamless workflow between your apps and Adobe’s Creative Cloud services.";
+vocabDict['Creative Cloud'] = "Adobe's Creative Cloud storage platform allows user to access their files on the fly from anywhere.";
+vocabDict['Asset Browser'] = "A simple UI for browsing the user's files as well as selecting one for download.";
+vocabDict['Boolean'] = "A variable of the primitive data type boolean can have two values: true and false.";
 
-//console.log(vocabDict['Creative Cloud SDK']);
+//<span class="toolTip">Asset Browser</span>
 
 
 
@@ -632,6 +635,8 @@ function dropdown(triangle, injectionID){
 		console.log("triangle turned green");
 		$('#'+injectionID).append(dict[injectionID]);
 		prettyPrint();
+		tip();
+
 	}
 	else{
 		console.log("triangle turned red")
@@ -642,20 +647,26 @@ function dropdown(triangle, injectionID){
 
 //hover 
 '<img src="img/androidPics/A1.png" style="width:100%; height:80%;">'
-var fi = "<div id='toolTip' style='background-color: black; position: absolute; padding:8px;font-size: 14px; color: burlywood;'>kay thanks bye adjhf a daa ada adaa a ad da  da da ad a a dda a da daohfohohgodhoh aodah</div>"
-$(document).ready( function (){
-	$('.toolTip').tooltip({
-	    items: ".toolTip",
-	    content: function(){
-	    	//return $(this)[0].innerHTML;
-	    	return "fhlskjfhj fsflkj fslkjhjksl fjklsljkfs jklfshjklfsjklfs jklfskljfs jklfs jlkfs kjlfs kjlh kjlfsh kjlsfh "
+function tip (){
+	$(document).ready( function (){
+		$('.toolTip').tooltip({
+		    items: ".toolTip",
+		    content: function(){
+		    	
+		    	var text = $(this)[0].innerHTML;
+
+		    	
+
+		    	return vocabDict[text];
 
 
 
-	    },
-		position: { my: "left bottom-25px", at: "center", collision:"fit" }	
+		    },
+			position: { my: "left bottom-25px", at: "center", collision:"fit" }	
+		});
+		
 	});
-	
-});
+}
+
 
 
