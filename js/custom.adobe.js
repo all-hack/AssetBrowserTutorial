@@ -37,10 +37,10 @@ dict['assumptions'] = '<div class="center-block textDiv assumptions"> \
                             </div>     ';
 
 dict['prepping-the-app'] = '<div class="textDiv center-block prepping-the-app"> \
-                        After completing the <span class="toolTip">Creative Cloud</span> <a href="https://creativesdk.adobe.com/docs/android/#/articles/gettingstarted/index.html">Getting Started</a> tutorial, we should have a very simple working Android app that allows the user to log into their Creative Cloud account. Before adding the <span class="toolTip">Asset Browser</span> to our app we are going to add a minimal UI to aid us in our testing. \
+                        After completing the <span class="toolTip">Creative Cloud</span> <a href="https://creativesdk.adobe.com/docs/android/#/articles/gettingstarted/index.html">Getting Started</a> tutorial, we should have a very simple working Android app that allows the user to <span class="picTip">log into their Creative Cloud account</span>. Before adding the <span class="toolTip">Asset Browser</span> to our app we are going to add a minimal UI to aid us in our testing. \
                         <br> \
                         <br> \
-                        To start we are going to change the layout XML file of our main activity <code class="prettyprint">SampleActivity.java</code>. \
+                        To start we are going to change the <span class="picTip">layout XML file</span> of our main activity <code class="prettyprint">SampleActivity.java</code>. \
                         <pre class="prettyprint"><xmp> \
                             <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android" \r \
                                 android:layout_width="match_parent" \r \
@@ -89,7 +89,7 @@ dict['prepping-the-app'] = '<div class="textDiv center-block prepping-the-app"> 
                          is where we will display the file we retrieve from the <span class="toolTip">Asset Browser</span>.  \
                         <br> \
                         <br> \
-                        Next in our <code class="prettyprint">SampleActivity.java</code> file we are going to <code class="prettyprint">setContentView(R.layout.activity_sample);</code> in the login status logic that we set up in the <a href="https://creativesdk.adobe.com/docs/android/#/articles/gettingstarted/index.html">Getting Started</a> tutorial. This will display our new layout if the user is logged in. \
+                        Next in our <code class="prettyprint">SampleActivity.java</code> file we are going to <code class="prettyprint">setContentView(R.layout.activity_sample);</code> in the login status logic that we set up in the <a href="https://creativesdk.adobe.com/docs/android/#/articles/gettingstarted/index.html">Getting Started</a> tutorial. This will <span class="picTip">display our new layout</span> if the user is logged in. \
                         <pre class="prettyprint"> \
                         //Session helper to check the login status  \r\
                         private AdobeAuthSessionHelper.IAdobeAuthStatusCallback _statusCallback = <br>                           new AdobeAuthSessionHelper.IAdobeAuthStatusCallback() { \r\
@@ -423,7 +423,7 @@ dict['file-browsing-with-AdobeUXAssetBrowser'] = ' \
                         <a href="https://creativesdk.adobe.com/docs/android/#/com/adobe/creativesdk/foundation/storage/AdobeUXAssetBrowser.html">popupFileBrowser(Activity activity, int requestCode)</a> is a void method that launches the <span class="toolTip">Asset Browser</span>. It extends the <a href="http://developer.android.com/reference/android/app/Activity.html#startActivityForResult(android.content.Intent, int)">startActivityForResult()</a> method of the Android framework which will be important later when we start to retrieve files from the <span class="toolTip">Asset Browser</span>. \
                         <br> \
                         <br> \
-                        The <a href="https://creativesdk.adobe.com/docs/android/#/com/adobe/creativesdk/foundation/storage/AdobeUXAssetBrowser.html">AdobeUXAssetBrowser</a> class also allows a degree of customizability by passing a <a href="https://creativesdk.adobe.com/docs/android/#/com/adobe/creativesdk/foundation/storage/AdobeUXAssetBrowserConfiguration.html">AdobeUXAssetBrowserConfiguation</a> object as a third parameter to the <a href="https://creativesdk.adobe.com/docs/android/#/com/adobe/creativesdk/foundation/storage/AdobeUXAssetBrowser.html">popupFileBrowser()</a> method. The <a href="https://creativesdk.adobe.com/docs/android/#/com/adobe/creativesdk/foundation/storage/AdobeUXAssetBrowserConfiguration.html">AdobeUXAssetBrowserConfiguation</a> object allows for many of different options. We will be only using one, My Account, which allows the user to look at their account settings as well as gives the user the ability to log out of their <span class="toolTip">Creative Cloud</span> account. \
+                        The <a href="https://creativesdk.adobe.com/docs/android/#/com/adobe/creativesdk/foundation/storage/AdobeUXAssetBrowser.html">AdobeUXAssetBrowser</a> class also allows a degree of customizability by passing a <a href="https://creativesdk.adobe.com/docs/android/#/com/adobe/creativesdk/foundation/storage/AdobeUXAssetBrowserConfiguration.html">AdobeUXAssetBrowserConfiguation</a> object as a third parameter to the <a href="https://creativesdk.adobe.com/docs/android/#/com/adobe/creativesdk/foundation/storage/AdobeUXAssetBrowser.html">popupFileBrowser()</a> method. The <a href="https://creativesdk.adobe.com/docs/android/#/com/adobe/creativesdk/foundation/storage/AdobeUXAssetBrowserConfiguration.html">AdobeUXAssetBrowserConfiguation</a> object allows for many of different options. We will be only using one, <span class="picTip">My Account</span>, which allows the user to look at their account settings as well as gives the user the ability to log out of their <span class="toolTip">Creative Cloud</span> account. \
                         <pre class="prettyprint">                            \
                                 //function to launch the Asset Browser \r\
                                 private void gotoAssetBrowserScreen() { \r\
@@ -587,7 +587,11 @@ vocabDict['Asset Browser'] = "A simple UI for browsing the user's files as well 
 vocabDict['Boolean'] = "A variable of the primitive data type boolean can have two values: true and false.";
 
 //<span class="toolTip">Asset Browser</span>
-
+var picDict = {};
+picDict['log into their Creative Cloud account'] = '<img class= "displayPic" src="img/log-into-their-Creative-Cloud-account.png">';
+picDict['layout XML file'] = '<img src="img/layout-XML-file.png" class= "displayPic"">';
+picDict['display our new layout'] = '<img src="img/display-our-new-layout.png" class= "displayPic">';
+picDict['My Account'] = '<img src="img/My Account.png" class= "displayPic">';
 
 
 
@@ -646,21 +650,22 @@ function dropdown(triangle, injectionID){
 }
 
 //hover 
-'<img src="img/androidPics/A1.png" style="width:100%; height:80%;">'
 function tip (){
 	$(document).ready( function (){
-		$('.toolTip').tooltip({
-		    items: ".toolTip",
+		$('.toolTip, .picTip').tooltip({
+		    items: ".picTip, .toolTip",
 		    content: function(){
 		    	
 		    	var text = $(this)[0].innerHTML;
 
-		    	
-
-		    	return vocabDict[text];
-
-
-
+		    	if ($(this)[0].className == "toolTip")
+		    	{
+		    		return vocabDict[text];
+		    	}
+		    	else 
+		    	{
+		    		return picDict[text];
+		    	}		 
 		    },
 			position: { my: "left bottom-25px", at: "center", collision:"fit" }	
 		});

@@ -2,9 +2,19 @@
 	color:red;
 }
 
+.picTip{
+	color: blue;
+}
+
+.displayPic{
+
+	width: 100%;
+
+}
+
 .ui-tooltip{
 
-	min-width:410px;
+	/*min-width:410px;*/
 
 
 }
