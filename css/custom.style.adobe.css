@@ -1,20 +1,25 @@
 .toolTip{
-	color:red;
+	/*color:red;*/
+	font-weight: bold;
 }
 
 .picTip{
-	color: blue;
+	color: #FF0000;
 }
 
 .displayPic{
 
-	width: 100%;
+	max-height: 350px;
+	max-width: 300px;
+	
+
 
 }
 
 .ui-tooltip{
 
-	/*min-width:410px;*/
+	max-height:400px;
+	max-width: 350px;
 
 
 }

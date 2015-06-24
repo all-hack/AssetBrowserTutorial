@@ -3,7 +3,7 @@ var dict = {};
 // dictionary of elements 
 dict['high-level-overview'] = "<div class='textDiv center-block high-level-overview'>\
                             The <span class='toolTip'>Creative Cloud SDK</span> includes a library to easily implement <span class='toolTip'>Creative Cloud</span> file browsing. We do this using the <span class='toolTip'>Asset Browser</span>. The <span class='toolTip'>Asset Browser</span> is used through the <a href='https://creativesdk.adobe.com/docs/android/#/com/adobe/creativesdk/foundation/storage/AdobeUXAssetBrowser.html'>AdobeUXAssetBrowser</a>\
-                             class which provides a simple UI for browsing the user's files as well as selecting one for download. \
+                             class which provides <span class='picTip'>a simple UI</span> for browsing the user's files as well as selecting one for download. \
                             <br>\
                             <br>                       \
                             In this tutorial we will create a simple minimalist UI for testing purposes, enable the <span class='toolTip'>Asset Browser</span>, enable the ability to select a file from the <span class='toolTip'>Asset Browser</span>, and then display that file in our simple minimalist UI.                            \
@@ -592,6 +592,7 @@ picDict['log into their Creative Cloud account'] = '<img class= "displayPic" src
 picDict['layout XML file'] = '<img src="img/layout-XML-file.png" class= "displayPic"">';
 picDict['display our new layout'] = '<img src="img/display-our-new-layout.png" class= "displayPic">';
 picDict['My Account'] = '<img src="img/My Account.png" class= "displayPic">';
+picDict['a simple UI'] = '<img src="img/a simple UI.png" class= "displayPic">';
 
 
 
@@ -631,6 +632,9 @@ picDict['My Account'] = '<img src="img/My Account.png" class= "displayPic">';
 <a href=""></a>
 */
 
+
+
+
 //drop down function 
 function dropdown(triangle, injectionID){
 	console.log($(triangle));
@@ -667,7 +671,8 @@ function tip (){
 		    		return picDict[text];
 		    	}		 
 		    },
-			position: { my: "left bottom-25px", at: "center", collision:"fit" }	
+		    track: true,
+			position: { my: "left+25px bottom-10px", at: "center", collision:"flip" }	
 		});
 		
 	});
